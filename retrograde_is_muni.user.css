@@ -16,12 +16,12 @@
                     "fZkratka:Zkratku fakulty", "fBarva:Barvu fakulty", "fLogo:Nové logo fakulty", "fNic:Nic"
                 ]
 @var            select   fakultaZnak "Ikonka v barvě fakulty" {
-                    "Domeček": '"\\f15a"',
-                    "Srdce": '"\\f159"',
-                    "Trojúhelník": '"\\f198"',
-                    "Čtvereček": '"\\f1ef"',
-                    "Puntík": '"•"',
-                    "Kroužek": '"\\f1a4"'
+                    "Domeček": "\"\\f15a\"",
+                    "Srdce": "\"\\f159\"",
+                    "Trojúhelník": "\"\\f198\"",
+                    "Čtvereček": "\"\\f1ef\"",
+                    "Puntík": "\"•\"",
+                    "Kroužek": "\"\\f1a4\""
                 }
 @var            select   pozadi    "Barva pozadí" {
                     "Namodralá (starý IS)*": "#F7F8FC",
