@@ -1,26 +1,50 @@
 /* ==UserStyle==
 @name           Zpátečnický IS MUNI
-@namespace      github.com/adamatousek
-@version        0.5.7
+@namespace      github.com/adamatousek/
+@version        1.0.0
 @description    Boj proti větrnému mlýnu, jímž je Nový IS.
 @author         Adam Matoušek
+@homepageURL    https://github.com/adamatousek/retrograde-is-muni
+@license        CC-BY-4.0
+
+@preprocessor   stylus
+@var            checkbox staraLoga "Použít stará loga" 1
+@var            checkbox retroFora "Přestylovat nová fóra" 1
+@var            checkbox barvyTitulka "Přebít barvy ikon titulní stránky" 1
+@var            checkbox retroPravy "Zpátečnický pravý panel" 1
+@var            select   mojePredmety "V seznamu Mých předmětů zobrazovat" [
+                    "fZkratka:Zkratku fakulty", "fBarva:Barvu fakulty", "fLogo:Nové logo fakulty", "fNic:Nic"
+                ]
+@var            select   fakultaZnak "Ikonka v barvě fakulty" {
+                    "Domeček": '"\\f15a"',
+                    "Srdce": '"\\f159"',
+                    "Trojúhelník": '"\\f198"',
+                    "Čtvereček": '"\\f1ef"',
+                    "Puntík": '"•"',
+                    "Kroužek": '"\\f1a4"'
+                }
+@var            select   pozadi    "Barva pozadí" {
+                    "Namodralá (starý IS)*": "#F7F8FC",
+                    "Bílá": "white"
+                }
 ==/UserStyle== */
 
 @-moz-document url-prefix("https://is.muni.cz/auth/") {
 /*****************************************************\
- Retrograde (prev. Compact) IS MUNI v. 0.5.7
+ Zpátečnický IS MUNI v. 1.0.0
+ Nyní konfigurovatelný!
 \*****************************************************/
 
 /*** General ***/
 
 html.auth body {
-    background: #F7F8FC; /* Old IS */
+    background: pozadi !important; /* Old IS */
     color: #000;
 }
 
 /* Signature */
 footer .paticka_logo > div:after {
-    content: "Používá styl „Zpátečnický IS MUNI“ v. 0.5.7";
+    content: "Používá styl „Zpátečnický IS MUNI“ v. 1.0.0";
     font-size: 0.875rem;
     font-weight: 300;
     display: block;
@@ -38,7 +62,7 @@ footer .footer_cas::before {
 }
 
 footer .footer_cas[title*="lichý"]::before {
-    content: "Dnes je lichý týden. "
+    content: "Dnes je lichý týden. ";
 }
 footer .footer_cas[title*="sudý"]::before {
     content: "Dnes je sudý týden. ";
@@ -53,7 +77,7 @@ footer .footer_cas::after {
     font-size: 0.875rem;
     display: inline;
     visibility: visible;
-    content: " Více…"
+    content: " Více…";
 }
 
 /* Search bar */
@@ -68,7 +92,7 @@ footer .footer_cas::after {
 #sticky_panel {
     padding-top: 0;
     height: 1.9rem;
-    z-index: 89
+    z-index: 89;
 }
 
 #sticky_panel.bgr {
@@ -104,7 +128,7 @@ footer .footer_cas::after {
 }
 
 #sticky_panel.sticky_panel_myuco {
-    background-color: #ffd620e6
+    background-color: #ffd620e6;
 }
 
 /* Left panel */
@@ -189,6 +213,7 @@ footer .footer_cas::after {
 
 /* Right panel */
 
+if retroPravy {
 @media screen and (min-width: 64em) {
     .zivot_column {
         padding-top: 1px;
@@ -225,7 +250,7 @@ footer .footer_cas::after {
 .zivot_wrap .prispevek > .text {
     color: #333;
 }
-
+} /* if retroPravy */
 
 /* Tabbed containers (e.g. the one in the 'Student' app) */
 
@@ -261,6 +286,7 @@ footer .footer_cas::after {
 
 /*** Title page ***/
 
+if barvyTitulka {
 #dlazdice {
     background-color: #fff6;
 }
@@ -329,6 +355,7 @@ dummy
 ,i.ikona-agenda.isi-management
 { color: #e6bb08; }
 
+} /* if barvyTitulka */
 
 /*
 .app_header_motiv_switch::before {
@@ -427,68 +454,125 @@ dummy
     padding: 0.3em 0.8em;
     transition: none;
 }
+if mojePredmety != fLogo {
 .predmet_conteiner .predmet_header .predmet_header_name img {
     display: none;
 }
+}
 
-.predmet_conteiner .predmet_header .predmet_header_name
+if mojePredmety == fZkratka {
+.predmet_conteiner .predmet_header .predmet_header_name \
 img +::before {
     color: #555;
     font-size: 90%;
     margin-right: 0.15em;
 }
 
-.predmet_conteiner .predmet_header .predmet_header_name
+.predmet_conteiner .predmet_header .predmet_header_name \
 img[src*="1411"] +::before {
     content: "LF:";
 }
 
-.predmet_conteiner .predmet_header .predmet_header_name
+.predmet_conteiner .predmet_header .predmet_header_name \
 img[src*="1421"] +::before {
     content: "FF:";
 }
 
-.predmet_conteiner .predmet_header .predmet_header_name
+.predmet_conteiner .predmet_header .predmet_header_name \
 img[src*="1422"] +::before {
     content: "PrF:";
 }
 
-.predmet_conteiner .predmet_header .predmet_header_name
+.predmet_conteiner .predmet_header .predmet_header_name \
 img[src*="1423"] +::before {
     content: "FSS:";
 }
 
-.predmet_conteiner .predmet_header .predmet_header_name
+.predmet_conteiner .predmet_header .predmet_header_name \
 img[src*="1431"] +::before {
     content: "PřF:";
 }
 
-.predmet_conteiner .predmet_header .predmet_header_name
+.predmet_conteiner .predmet_header .predmet_header_name \
 img[src*="1433"] +::before {
     content: "FI:";
 }
 
-.predmet_conteiner .predmet_header .predmet_header_name
+.predmet_conteiner .predmet_header .predmet_header_name \
 img[src*="1441"] +::before {
     content: "PdF:";
 }
 
-.predmet_conteiner .predmet_header .predmet_header_name
+.predmet_conteiner .predmet_header .predmet_header_name \
 img[src*="1456"] +::before {
     content: "ESF:";
 }
-.predmet_conteiner .predmet_header .predmet_header_name
+.predmet_conteiner .predmet_header .predmet_header_name \
 img[src*="1451"] +::before {
     content: "FSpS:";
 }
+} /* if mojePredmety == fZkratka */
+else if mojePredmety == fBarva {
+.predmet_conteiner .predmet_header .predmet_header_name \
+img +::before {
+    color: #555;
+    font-size: 100%;
+    margin-right: 0.45em;
+    content: fakultaZnak;
+    font-family: foundation-icons;
+}
 
+.predmet_conteiner .predmet_header .predmet_header_name \
+img[src*="1411"] +::before {
+    color: red;
+}
+
+.predmet_conteiner .predmet_header .predmet_header_name \
+img[src*="1421"] +::before {
+    color: skyblue;
+}
+
+.predmet_conteiner .predmet_header .predmet_header_name \
+img[src*="1422"] +::before {
+    color: purple;
+}
+
+.predmet_conteiner .predmet_header .predmet_header_name \
+img[src*="1423"] +::before {
+    color: darkcyan;
+}
+
+.predmet_conteiner .predmet_header .predmet_header_name \
+img[src*="1431"] +::before {
+    color: green;
+}
+
+.predmet_conteiner .predmet_header .predmet_header_name \
+img[src*="1433"] +::before {
+    color: #f2d45c;
+}
+
+.predmet_conteiner .predmet_header .predmet_header_name \
+img[src*="1441"] +::before {
+    color: orange;
+}
+
+.predmet_conteiner .predmet_header .predmet_header_name \
+img[src*="1456"] +::before {
+    color: maroon;
+}
+.predmet_conteiner .predmet_header .predmet_header_name \
+img[src*="1451"] +::before {
+    color: #57cfb8;
+}
+} /* if mojePredmety == fBarva */
 
 .predmet_conteiner.active .predmet_header::after {
     display: block;
     width: calc(100% - 0.8em);
     margin-left: 0.4em;
     border-top: 1px solid #CCC;
-    content: ""
+    content: "";
 }
 
 .student_row_a .hodnoceni {
@@ -622,9 +706,9 @@ div.ik_qref::before { /* Questionary */
 }
 
 @-moz-document url-prefix("https://is.muni.cz/auth/discussion") {
+if retroFora {
+
 /*** New discussion fora ***/
-/* Separated so that people not sharing
-   my taste can undo my redesign easily */
 
 /* Pop-up quirks */
 /* Needed so that the two floating panels look good together while pop-ups
@@ -1045,8 +1129,8 @@ h2 + .forum_rezimy .forum_rezim {
 #app_content .prispevek .nastaveni {
     margin-top: 0;
 }
+} /* if retroFora */
 }
-
 @-moz-document url-prefix("https://is.muni.cz/auth/rozvrh/zobraz/") {
 /*** Time table (new) ***/
 
@@ -1108,7 +1192,7 @@ h2 + .forum_rezimy .forum_rezim {
     }
     #rozvrh_tabulka tbody td > span.predmet_kod > a {
         color: #002776;
-        font-weight: 500
+        font-weight: 500;
     }
     #rozvrh_tabulka tbody td > span.predmet_nazev {
         font-size: 90%;
@@ -1124,6 +1208,7 @@ h2 + .forum_rezimy .forum_rezim {
 }
 
 @-moz-document url-prefix("https://is.muni.cz/auth/") {
+if staraLoga {
 /*** Logos ***/
 
 /* Main logo */
@@ -1212,6 +1297,7 @@ button.no-design[class *= "logo-14"],
     background-position: 50% !important;
     background-size: 90% !important;
 }
+} /* if staraLoga */
 }
 
 @-moz-document url-prefix("https://is.muni.cz/auth/") {
@@ -1256,7 +1342,7 @@ button.no-design[class *= "logo-14"],
 
 div.pa_projekt .pa_projekt_karta,
 div.pa_projekt_novy a {
-    background-color: #0000000b
+    background-color: #0000000b;
 }
 
 .pa_tvorba_formulare_radek .radek_content,
@@ -1264,3 +1350,4 @@ div.pa_projekt_rozsireni {
     background-color: white;
 }
 }
+

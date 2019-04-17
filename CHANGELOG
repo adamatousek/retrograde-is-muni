@@ -1,9 +1,11 @@
 CHANGELOG (Czech only)
 ------------------------------------------------------------------------------
 
-v. 0.5.7 (2019-04-17)
+v. 1.0.0 (2019-04-17)
+    * UŽIVATELSKÁ KONFIGUROVATELNOST.
+    * Migrace na GitHub.
     * Opraveny hvězdičky v novém rozvrhu.
-    * Založení repositáře na GitHubu.
+    * Místo zkratky fakulty lze zobrazit ikonku v barvě fakulty.
 
 v. 0.5.6 (2019-03-30)
     * Opětovné odrozbití vodorovných nabídek.
