@@ -1,6 +1,6 @@
 # Zpátečnický IS MUNI
 
-[![Install directly with Stylus or Stylish](https://img.shields.io/badge/Nainstalovat%20pomoc%C3%AD-Stylish-00adad.svg)](https://raw.githubusercontent.com/adamatousek/retrograde-is-muni/master/retrograde_is_muni.user.css)
+[![Install directly with Stylus or Stylish](https://img.shields.io/badge/Nainstalovat%20pomoc%C3%AD-Stylus-00adad.svg)](https://raw.githubusercontent.com/adamatousek/retrograde-is-muni/master/retrograde_is_muni.user.css)
 
 > Když se ti něco nelíbí, tak to změň.
 
@@ -12,10 +12,10 @@ vítané.
 
 ## Použití
 
-S nainstalovaným doplňkem Stylish
-([Firefox](https://addons.mozilla.org/en-US/firefox/addon/stylish/),
-[Chrome](https://chrome.google.com/webstore/detail/stylish-custom-themes-for/fjnbnpbmkenffdnngjfgmeleoegfcffe))
-přejděte na [sem (soubor se stylem)](https://raw.githubusercontent.com/adamatousek/retrograde-is-muni/master/retrograde_is_muni.user.css) a doplněk by měl sám nabídnout instalaci.
+S nainstalovaným doplňkem Stylus
+([Firefox](https://addons.mozilla.org/en-US/firefox/addon/styl-us/),
+[Chrome](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne/)) nebo Stylish
+přejděte na [soubor se stylem](https://raw.githubusercontent.com/adamatousek/retrograde-is-muni/master/retrograde_is_muni.user.css) a doplněk by měl sám nabídnout instalaci.
 
 (Nekonfigurovatelná a nadále neaktualisovaná verse k nalezení též na
 [userstyles.org](https://userstyles.org/styles/162757/))
