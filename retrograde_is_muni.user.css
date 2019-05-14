@@ -107,7 +107,7 @@ footer .footer_cas::after {
 }
 
 #sticky_panel .ikony .prepinac-jazyk,
-#sticky_panel .ikony > i {
+#sticky_panel .ikony .sticky-icon {
     height: 1.5rem;
 }
 
@@ -116,7 +116,7 @@ footer .footer_cas::after {
     line-height: 1.4rem;
 }
 
-#sticky_panel .ikony > i {
+#sticky_panel .ikony .sticky-icon {
     font-size: 140%;
     line-height: 1.2rem;
 }
