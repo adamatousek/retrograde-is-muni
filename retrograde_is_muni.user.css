@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Zpátečnický IS MUNI
 @namespace      github.com/adamatousek/
-@version        1.0.0
+@version        1.0.1
 @description    Boj proti větrnému mlýnu, jímž je Nový IS.
 @author         Adam Matoušek
 @homepageURL    https://github.com/adamatousek/retrograde-is-muni
@@ -13,7 +13,7 @@
 @var            checkbox barvyTitulka "Přebít barvy ikon titulní stránky" 1
 @var            checkbox retroPravy "Zpátečnický pravý panel" 1
 @var            select   mojePredmety "V seznamu Mých předmětů zobrazovat" [
-                    "fZkratka:Zkratku fakulty", "fBarva:Barvu fakulty", "fLogo:Nové logo fakulty", "fNic:Nic"
+                    "fZkratka:Zkratku fakulty", "fBarva:Barvu fakulty", "fLogo:Logo fakulty", "fNic:Nic"
                 ]
 @var            select   fakultaZnak "Ikonka v barvě fakulty" {
                     "Domeček": "\"\\f15a\"",
@@ -31,7 +31,7 @@
 
 @-moz-document url-prefix("https://is.muni.cz/auth/") {
 /*****************************************************\
- Zpátečnický IS MUNI v. 1.0.0
+ Zpátečnický IS MUNI v. 1.0.1
  Nyní konfigurovatelný!
 \*****************************************************/
 
@@ -44,7 +44,7 @@ html.auth body {
 
 /* Signature */
 footer .paticka_logo > div:after {
-    content: "Používá styl „Zpátečnický IS MUNI“ v. 1.0.0";
+    content: "Používá styl „Zpátečnický IS MUNI“ v. 1.0.1";
     font-size: 0.875rem;
     font-weight: 300;
     display: block;
@@ -1225,42 +1225,52 @@ body.en .hlavicka .stitek.skola_14 {
 /* Emblems in fora and right panel (and perhaps elsewhere) */
 [style *= "loga/profilove/M14.svg"],
 [style *= "loga/profilove/M14-pracoviste.svg"],
+img[src = "/pics/design/r6/loga/14.svg"],
 .logo-14 {
     background-image: url("https://is.muni.cz/auth/www/adamat/konserva/14.svg") !important;
 }
 [style *= "loga/profilove/M1411.svg"],
+img[src = "/pics/design/r6/loga/1411.svg"],
 .logo-1411 {
     background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1411.svg") !important;
 }
 [style *= "loga/profilove/M1421.svg"],
+img[src = "/pics/design/r6/loga/1421.svg"],
 .logo-1421 {
     background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1421.svg") !important;
 }
 [style *= "loga/profilove/M1422.svg"],
+img[src = "/pics/design/r6/loga/1422.svg"],
 .logo-1422 {
     background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1422.svg") !important;
 }
 [style *= "loga/profilove/M1423.svg"],
+img[src = "/pics/design/r6/loga/1423.svg"],
 .logo-1423 {
     background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1423.svg") !important;
 }
 [style *= "loga/profilove/M1431.svg"],
+img[src = "/pics/design/r6/loga/1431.svg"],
 .logo-1431 {
     background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1431.svg") !important;
 }
 [style *= "loga/profilove/M1433.svg"],
+img[src = "/pics/design/r6/loga/1433.svg"],
 .logo-1433 {
     background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1433.svg") !important;
 }
 [style *= "loga/profilove/M1441.svg"],
+img[src = "/pics/design/r6/loga/1441.svg"],
 .logo-1441 {
     background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1441.svg") !important;
 }
 [style *= "loga/profilove/M1451.svg"],
+img[src = "/pics/design/r6/loga/1451.svg"],
 .logo-1451 {
     background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1451.svg") !important;
 }
 [style *= "loga/profilove/M1456.svg"],
+img[src = "/pics/design/r6/loga/1456.svg"],
 .logo-1456 {
     background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1456.svg") !important;
 }
@@ -1275,6 +1285,11 @@ button.no-design[class *= "logo-14"],
     background-size: 0 !important;
 }
 
+/* "Hide" original (src) image to show our background underneath */
+
+img[src *= "/pics/design/r6/loga/14"] {
+    object-position: 999px 999px;
+}
 
 /* Right panel adjustments */
 
