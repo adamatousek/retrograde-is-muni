@@ -121,7 +121,7 @@ footer .footer_cas::after {
     line-height: 1.2rem;
 }
 
-#sticky_panel .ikony > i.isi-zivot .pocet {
+#sticky_panel .ikony > .isi-zivot .pocet {
     color: #C88;
     font-size: 60%;
     bottom: 0;
@@ -229,7 +229,7 @@ if retroPravy {
     padding: 1em;
 }
 
-.zivot_wrap a > div.nazev {
+.zivot_wrap a .nazev {
     display: none;
 }
 
