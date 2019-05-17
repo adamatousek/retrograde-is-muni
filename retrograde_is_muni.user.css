@@ -1316,7 +1316,7 @@ img[src *= "/pics/design/r6/loga/14"] {
 }
 
 @-moz-document url-prefix("https://is.muni.cz/auth/") {
-/***** Interactive Outlines and Peer assessment *****/
+/***** Interactive Outlines, new Questionaries and Peer assessment *****/
 
 /*** Interactive Outlines ***/
 
@@ -1352,6 +1352,16 @@ img[src *= "/pics/design/r6/loga/14"] {
     margin: 0;
 }
 
+/*** New Questionaries ***/
+#odpo_aplikace {
+    background-color: white;
+    padding-top: 0.5em;
+    margin-bottom: 0;
+}
+
+#odpo_paticka {
+    background-color: white;
+}
 
 /*** Peer assessment ***/
 
