@@ -12,7 +12,7 @@
 @var            checkbox retroFora "Přestylovat nová fóra" 1
 @var            checkbox barvyTitulka "Přebít barvy ikon titulní stránky" 1
 @var            checkbox retroPravy "Zpátečnický pravý panel" 1
-@var            checkbox bezPripinacku "Vynout připínáčky v levém menu" 0
+@var            checkbox bezPripinacku "Vypnout připínáčky v levém menu" 0
 @var            select   mojePredmety "V seznamu Mých předmětů zobrazovat" [
                     "fZkratka:Zkratku fakulty", "fBarva:Barvu fakulty", "fLogo:Logo fakulty", "fNic:Nic"
                 ]
