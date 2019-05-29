@@ -912,8 +912,6 @@ h2 + .forum_rezimy .forum_rezim {
 
 #app_content .vlakno_prispevek > .prispevek > .foto_wrap .foto {
     transform: none;
-    width: 4.2em;
-    height: 5.1em;
 }
 
 #app_content .vlakno_prispevek {
@@ -925,7 +923,7 @@ h2 + .forum_rezimy .forum_rezim {
     border-radius: 0.4em;
     border: 0.2em solid white;
     width: 4.2em;
-    height: 5.1em;
+    height: 4.9em;
     box-shadow: 0 0 1px gray;
     background-size: 4em;
 }
@@ -977,9 +975,18 @@ h2 + .forum_rezimy .forum_rezim {
     background: linear-gradient(to bottom, #ffebbc 3em, transparent calc( 100% - 1em ));
 }
 
+#discussion .prispevek.focus > .obsah {
+    background-color: #f2ece2;
+}
+
 [data-whatintent="mouse"] #app_content .prispevek > .preview_trigger {
     width: 1em;
     left: calc( -1em - 1px );
+}
+
+#discussion .prispevek .autor .df_autor_cas,
+#discussion .prispevek .autor .df_autor_jmeno {
+	padding-top: 0;
 }
 
 #app_content .parent_preview {
