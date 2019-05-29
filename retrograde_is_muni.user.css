@@ -13,6 +13,7 @@
 @var            checkbox barvyTitulka "Přebít barvy ikon titulní stránky" 1
 @var            checkbox retroPravy "Zpátečnický pravý panel" 1
 @var            checkbox bezPripinacku "Vypnout připínáčky v levém menu" 0
+@var            checkbox cisloTydne "Zobrazovat v patičce číslo týdne" 0
 @var            select   mojePredmety "V seznamu Mých předmětů zobrazovat" [
                     "fZkratka:Zkratku fakulty", "fBarva:Barvu fakulty", "fLogo:Logo fakulty", "fNic:Nic"
                 ]
@@ -61,12 +62,14 @@ footer .footer_cas::before {
     content: attr(title); /* If you want to know the week nuber as well */
 }
 
+if not cisloTydne {
 footer .footer_cas[title*="lichý"]::before {
     content: "Dnes je lichý týden. ";
 }
 footer .footer_cas[title*="sudý"]::before {
     content: "Dnes je sudý týden. ";
 }
+} /* if not cisloTydne */
 
 footer .footer_cas {
     font-size: 0;
