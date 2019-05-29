@@ -154,8 +154,8 @@ footer .footer_cas::after {
 }
 
 if bezPripinacku {
-.isi-pripinacek {
-display: none !important;
+#left_menu .isi-pripinacek {
+    display: none !important;
 }
 } /* if bezPripinacku */
 
