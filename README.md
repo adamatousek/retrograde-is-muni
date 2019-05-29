@@ -7,7 +7,7 @@
 Takže si měním vzhled nového ISu. Má stará loga. Měl by být kompaktnější a
 některé věci (třeba barvy) přebírá ze starého ISu. Těžce přestylovává nové
 Diskuse a lehce spoustu jiných aplikací. Neručím za věci, které se strašně
-rozbijí a urážku vašeho estetického cítění. Forever work-in-progress. Forky jsou
+rozbijí, a urážku vašeho estetického cítění. Forever work-in-progress. Forky jsou
 vítané.
 
 ## Použití
@@ -22,14 +22,16 @@ přejděte na [soubor se stylem](https://raw.githubusercontent.com/adamatousek/r
 
 ## Nastavení
 
-Styly je možné za běhu přizpůsobovat (v rozšíření Stylish hledejte ozubené
+Styly je možné za běhu přizpůsobovat (v rozšíření Stylus hledejte ozubené
 kolečko u jména stylu). Takto nastavit je nyní lze:
 
-* **Stará loga**: zda chcete nový hnus přebít starými logy
-* **Nová fóra**: zda chcete nový hnus přestylovat na něco použitelnějšího
+* **Stará loga**: zda chcete nový hnus přebít starými logy.
+* **Nová fóra**: zda chcete nový hnus přestylovat na něco použitelnějšího.
 * **Barvy úvodní stránky**: Zda chcete přebít barvy kulatých ikon na titulní
   stránce (protože třeba ve stylu „Minimální“ jsou docela ošklivé).
 * **Pravý panel**: zda chcete pravý panel připomínající ten ze starého ISu.
+* **Připínáčky** lze v levém panelu skrýt.
+* **Číslo týdne v patičce**: je-li vypnuto, zobrazuje se jen parita týdne.
 * **Fakulta v Mých předmětech**: Místo nového loga je možné zvolit (mnohem
   menší) ikonku v barvě fakulty, textovou zkratku, případně nic.
 * **Ikonka fakulty**: Použije se pouze, je-li výše zvolena „Barva fakulty“.
@@ -38,4 +40,7 @@ kolečko u jména stylu). Takto nastavit je nyní lze:
 
 ## Náhledy
 
-*TODO*
+Trochu starší, ale nic zásadního se nezměnilo.
+
+![Screenshot agendy Student](https://is.muni.cz/www/adamat/public/retro01.png)
+![Screenshot nových fór](https://is.muni.cz/www/adamat/public/retro02.png)
