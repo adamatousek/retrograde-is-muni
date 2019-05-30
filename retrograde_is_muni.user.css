@@ -922,11 +922,15 @@ h2 + .forum_rezimy .forum_rezim {
     padding: 0.4em 1em 0.2em;
 }
 
+#app_content .vlakno_prispevek > .prispevek > .foto_wrap .foto,
+#app_content .prispevek > .foto_wrap .foto {
+    width: 4.2em;
+    height: 4.9em;
+}
+
 #app_content .prispevek > .foto_wrap .foto {
     border-radius: 0.4em;
     border: 0.2em solid white;
-    width: 4.2em;
-    height: 4.9em;
     box-shadow: 0 0 1px gray;
     background-size: 4em;
 }
