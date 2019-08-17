@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Zpátečnický IS MUNI
 @namespace      github.com/adamatousek/
-@version        1.0.6
+@version        1.0.7
 @description    Boj proti větrnému mlýnu, jímž je Nový IS.
 @author         Adam Matoušek
 @homepageURL    https://github.com/adamatousek/retrograde-is-muni
@@ -45,7 +45,7 @@ html.auth body {
 
 /* Signature */
 footer .paticka_logo > div:after {
-    content: "Používá styl „Zpátečnický IS MUNI“ v. 1.0.6";
+    content: "Používá styl „Zpátečnický IS MUNI“ v. 1.0.7";
     font-size: 0.875rem;
     font-weight: 300;
     display: block;
@@ -277,8 +277,12 @@ if retroPravy {
     border-top: none !important;
 }
 
-.tabs-title:hover {
-    background-color: #fff;
+.tabs-title > a:focus,
+.tabs-title > a[aria-selected="true"] {
+    padding-top: calc(0.7rem+1px);
+    padding-bottom: calc(0.7rem + 4px);
+    margin-top: 2px;
+    padding-left: calc(1.5rem - 1px);
 }
 
 .tabs-panel {
@@ -1000,6 +1004,7 @@ h2 + .forum_rezimy .forum_rezim {
 
 #app_content .prispevek.novy > .obsah {
     background: linear-gradient(to bottom, #ffebbc 3em, transparent calc( 100% - 1em ));
+    min-height: 0rem;
 }
 
 #discussion .prispevek.focus > .obsah {
