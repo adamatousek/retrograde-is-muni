@@ -14,7 +14,7 @@ vítané.
 
 S nainstalovaným doplňkem Stylus
 ([Firefox](https://addons.mozilla.org/en-US/firefox/addon/styl-us/),
-[Chrome](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne/)) nebo Stylish
+[Chrome](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne/))
 přejděte na [soubor se stylem](https://raw.githubusercontent.com/adamatousek/retrograde-is-muni/master/retrograde_is_muni.user.css) a doplněk by měl sám nabídnout instalaci.
 
 (Nekonfigurovatelná a nadále neaktualisovaná verse k nalezení též na
