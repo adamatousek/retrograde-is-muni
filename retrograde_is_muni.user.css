@@ -1019,6 +1019,11 @@ h2 + .forum_rezimy .forum_rezim {
     left: calc( -1em - 1px );
 }
 
+#app_content .prispevek > .obsah > .text > .nazev_prispevku {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
 #discussion .prispevek .autor .df_autor_cas,
 #discussion .prispevek .autor .df_autor_jmeno {
 	padding-top: 0;
