@@ -972,7 +972,8 @@ h2 + .forum_rezimy .forum_rezim {
     font-size: 1rem;
 }
 
-#app_content .prispevek .autor > div > div:nth-child(2) > a[title]::after {
+/* display exact date/time */
+#app_content .prispevek .autor > div > div:nth-child(2) > span[title]:not([title=""])::after {
     content: " (" attr(title) ")";
     color: #555;
 }
