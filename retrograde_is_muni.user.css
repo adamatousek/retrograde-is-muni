@@ -1214,7 +1214,7 @@ h2 + .forum_rezimy .forum_rezim {
     }
 
     #rozvrh_tabulka tbody th {
-        border: 2px solid;
+        border: 2px solid gray !important;
     }
     #rozvrh_tabulka .den-horni-radek:not(:first-child) td,
     #rozvrh_tabulka tr:first-child td {
@@ -1224,7 +1224,7 @@ h2 + .forum_rezimy .forum_rezim {
         border-bottom-width: 2px !important;
     }
     #rozvrh_tabulka tbody tr {
-        border-right-width: 2px;
+        border-right-width: 2px !important;
     }
 
 
