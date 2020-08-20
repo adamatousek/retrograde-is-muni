@@ -1158,6 +1158,10 @@ if retroRozvrh {
             background-color: white;
             color: black;
             font-size: 120%;
+
+            &.prave_probiha {
+                background-color: #fccd06;
+            }
         }
 
         tbody tr,
