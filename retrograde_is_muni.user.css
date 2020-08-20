@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Zpátečnický IS MUNI
 @namespace      github.com/adamatousek/
-@version        1.0.9
+@version        1.1.0
 @description    Boj proti větrnému mlýnu, jímž je Nový IS.
 @author         Adam Matoušek
 @homepageURL    https://github.com/adamatousek/retrograde-is-muni
@@ -10,6 +10,7 @@
 @preprocessor   stylus
 @var            checkbox staraLoga "Použít stará loga" 1
 @var            checkbox retroFora "Přestylovat nová fóra" 1
+@var            checkbox retroRozvrh "Přestylovat rozvrh" 1
 @var            checkbox barvyTitulka "Přebít barvy ikon titulní stránky" 1
 @var            checkbox retroPravy "Zpátečnický pravý panel" 1
 @var            checkbox bezPripinacku "Vypnout připínáčky v levém menu" 0
@@ -31,6 +32,57 @@
                 }
 ==/UserStyle== */
 
+/*** Per-faculty data ***/
+
+fakulty = {
+    "1411" : {
+        zkr: "LF"
+        barva: red
+    }
+    "1421" : {
+        zkr: "FF"
+        barva: skyblue
+    }
+    "1422" : {
+        zkr: "PrF"
+        barva: purple
+    }
+    "1423" : {
+        zkr: "FSS"
+        barva: darkcyan
+    }
+    "1431" : {
+        zkr: "PřF"
+        barva: green
+    }
+    "1433" : {
+        zkr: "FI"
+        barva: #f2d45c
+    }
+    "1441" : {
+        zkr: "PdF"
+        barva: orange
+    }
+    "1456" : {
+        zkr: "ESF"
+        barva: maroon
+    }
+    "1451" : {
+        zkr: "FSpS"
+        barva: #57cfb8
+    }
+}
+
+/*** Other parameters ***/
+
+vyska_horniho_panelu = 1.9rem // for positioning other floating panels
+
+
+velke = "screen and (min-width: 64em)"
+co-velke = "screen and (max-width: 63.99em)"
+mobil = "screen and (max-width: 39.9375em)"
+co-mobil = "screen and (min-width: 40em)"
+
 @-moz-document url-prefix("https://is.muni.cz/auth/") {
 /*****************************************************\
  Zpátečnický IS MUNI
@@ -45,7 +97,7 @@ html.auth body {
 
 /* Signature */
 footer .paticka_logo > div > div:after {
-    content: "Používá styl „Zpátečnický IS MUNI“ v. 1.0.9";
+    content: "Používá styl „Zpátečnický IS MUNI“ v. 1.1.0";
     font-size: 0.875rem;
     font-weight: 300;
     display: block;
@@ -94,7 +146,7 @@ footer .footer_cas::after {
 
 #sticky_panel {
     padding-top: 0;
-    height: 1.9rem;
+    height: vyska_horniho_panelu;
     z-index: 89;
 }
 
@@ -135,14 +187,6 @@ footer .footer_cas::after {
 }
 
 /* Left panel */
-
-/*
-@media only screen and (min-width: 1280px) and (max-width: 102em) {
-    #left_menu_offset_wrap > #left_menu {
-        left: -290px !important;
-    }
-}
-*/
 
 #left_menu .tags > li > a {
     font-size: 1.2rem;
@@ -223,7 +267,7 @@ if bezPripinacku {
 /* Right panel */
 
 if retroPravy {
-@media screen and (min-width: 64em) {
+@media velke {
     .zivot_column {
         padding-top: 1px;
         padding-left: 0.5em;
@@ -242,7 +286,7 @@ if retroPravy {
     display: none;
 }
 
-@media screen and (max-width: 63.9em) {
+@media co-velke {
 	.zivot_wrap {
 		margin: 1.2em 1px;
 	}
@@ -328,61 +372,54 @@ if barvyTitulka {
     background-color: #abb1;
 }
 
-dummy
-,i.ikona-agenda.isi-system
-,i.ikona-agenda.isi-studijni
-,i.ikona-agenda.isi-diskuse
-,i.ikona-agenda.isi-setkavani
-,i.ikona-agenda.isi-devel
-{ color: #c91717; }
+i.ikona-agenda {
+    &.isi-system
+    &.isi-studijni
+    &.isi-diskuse
+    &.isi-setkavani
+    &.isi-devel
+    { color: #c91717; }
 
-dummy
-,i.ikona-agenda.isi-student
-,i.ikona-agenda.isi-studium
-{ color: #00a442; }
+    &.isi-student
+    &.isi-studium
+    { color: #00a442; }
 
-dummy
-,i.ikona-agenda.isi-ucitel
-,i.ikona-agenda.isi-e-volby
-,i.ikona-agenda.isi-posta
-{ color: #002776; }
+    &.isi-ucitel
+    &.isi-e-volby
+    &.isi-posta
+    { color: #002776; }
 
-dummy
-,i.ikona-agenda.isi-skolitel
-,i.ikona-agenda.isi-uradovna
-,i.ikona-agenda.isi-stipendia
-{ color: #fc9603; }
+    &.isi-skolitel
+    &.isi-uradovna
+    &.isi-stipendia
+    { color: #fc9603; }
 
-dummy
-,i.ikona-agenda.isi-publikace
-,i.ikona-agenda.isi-obchod
-,i.ikona-agenda.isi-rozvrh
-{ color: #00a1de; }
+    &.isi-publikace
+    &.isi-obchod
+    &.isi-rozvrh
+    { color: #00a1de; }
 
-dummy
-,i.ikona-agenda.isi-vyveska
-,i.ikona-agenda.isi-rozpisy
-,i.ikona-agenda.isi-karty
-,i.ikona-agenda.isi-externi_sluzby
-{ color: #16a3ae; }
+    &.isi-vyveska
+    &.isi-rozpisy
+    &.isi-karty
+    &.isi-externi_sluzby
+    { color: #16a3ae; }
 
-dummy
-,i.ikona-agenda.isi-prijimacky
-,i.ikona-agenda.isi-soubory
-,i.ikona-agenda.isi-lide
-,i.ikona-agenda.isi-garant
-{ color: #8430a0; }
+    &.isi-prijimacky
+    &.isi-soubory
+    &.isi-lide
+    &.isi-garant
+    { color: #8430a0; }
 
-dummy
-,i.ikona-agenda.isi-predmety
-,i.ikona-agenda.isi-nastroje
-{ color: #7f0d0a; }
+    &.isi-predmety
+    &.isi-nastroje
+    { color: #7f0d0a; }
 
-dummy
-,i.ikona-agenda.isi-elportal
-,i.ikona-agenda.isi-pruzkumy
-,i.ikona-agenda.isi-management
-{ color: #e6bb08; }
+    &.isi-elportal
+    &.isi-pruzkumy
+    &.isi-management
+    { color: #e6bb08; }
+}
 
 } /* if barvyTitulka */
 
@@ -489,110 +526,35 @@ if mojePredmety != fLogo {
 }
 }
 
+do_fakulty(attrib) {
+    for f, d in fakulty {
+        srcsel = "src*='" + f + "'"
+        &[{srcsel}] +::before {
+            attrib( d )
+        }
+    }
+}
+
 if mojePredmety == fZkratka {
-.predmet_conteiner .predmet_header .predmet_header_name \
-img +::before {
-    color: #555;
-    font-size: 90%;
-    margin-right: 0.15em;
-}
-
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1411"] +::before {
-    content: "LF:";
-}
-
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1421"] +::before {
-    content: "FF:";
-}
-
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1422"] +::before {
-    content: "PrF:";
-}
-
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1423"] +::before {
-    content: "FSS:";
-}
-
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1431"] +::before {
-    content: "PřF:";
-}
-
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1433"] +::before {
-    content: "FI:";
-}
-
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1441"] +::before {
-    content: "PdF:";
-}
-
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1456"] +::before {
-    content: "ESF:";
-}
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1451"] +::before {
-    content: "FSpS:";
+.predmet_conteiner .predmet_header .predmet_header_name img {
+    +::before {
+        color: #555;
+        font-size: 90%;
+        margin-right: 0.15em;
+    }
+    do_fakulty( @(d){content: d.zkr + ":"} )
 }
 } /* if mojePredmety == fZkratka */
 else if mojePredmety == fBarva {
-.predmet_conteiner .predmet_header .predmet_header_name \
-img +::before {
-    color: #555;
-    font-size: 100%;
-    margin-right: 0.45em;
-    content: fakultaZnak;
-    font-family: foundation-icons;
-}
-
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1411"] +::before {
-    color: red;
-}
-
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1421"] +::before {
-    color: skyblue;
-}
-
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1422"] +::before {
-    color: purple;
-}
-
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1423"] +::before {
-    color: darkcyan;
-}
-
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1431"] +::before {
-    color: green;
-}
-
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1433"] +::before {
-    color: #f2d45c;
-}
-
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1441"] +::before {
-    color: orange;
-}
-
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1456"] +::before {
-    color: maroon;
-}
-.predmet_conteiner .predmet_header .predmet_header_name \
-img[src*="1451"] +::before {
-    color: #57cfb8;
+.predmet_conteiner .predmet_header .predmet_header_name img {
+    +::before {
+        color: #555;
+        font-size: 100%;
+        margin-right: 0.45em;
+        content: fakultaZnak;
+        font-family: foundation-icons;
+    }
+    do_fakulty( @(d){color: d.barva} )
 }
 } /* if mojePredmety == fBarva */
 
@@ -631,7 +593,7 @@ img[src*="1451"] +::before {
     margin: 0 -0.5rem 0.2rem;
 }
 
-@media screen and (min-width: 40em) {
+@media co-mobil {
     .predmet_body > div > div:last-child {
         margin: 0 -0.9rem 0.16rem;
     }
@@ -672,7 +634,7 @@ img[src*="1451"] +::before {
     padding-right: 0em;
 }
 
-@media screen and (min-width: 64em) {
+@media velke {
     .row.student_row_d > .column {
         padding-right: 1em;
     }
@@ -722,7 +684,7 @@ div.ik_qref::before { /* Questionary */
 }
 
 .discussion_sticky {
-    top: 1.9rem;
+    top: vyska_horniho_panelu;
     z-index: 85;
 
 }
@@ -751,7 +713,7 @@ if retroFora {
     width: 100%;
     border-bottom: 1px solid pozadi;
     position: absolute;
-    top: 1.9em;
+    top: vyska_horniho_panelu;
     left: 0;
     z-index: 86;
 }
@@ -779,7 +741,7 @@ if retroFora {
     width: 100%;
     border-top: 1px solid #ddd;
     position: fixed;
-    top: 1.9rem;
+    top: vyska_horniho_panelu;
     left: 0;
 }
 
@@ -1084,7 +1046,7 @@ h2 + .forum_rezimy .forum_rezim {
     background-color: white;
 }
 
-@media print, screen and (max-width: 39.9375em) {
+@media print, mobil {
     #app_content .vlakno_prispevek > .prispevek > .obsah,
     #app_content .prispevek.novy > .obsah,
     #app_content .prispevek > .obsah {
@@ -1133,42 +1095,28 @@ h2 + .forum_rezimy .forum_rezim {
     }
 }
 
-@media print, screen and (min-width: 40em) {
+@media print, co-mobil {
     #app_content .prispevek .autor .row .column:nth-child(2) {
         flex: 1 0 auto;
     }
 }
 
-
-.prispevek .autor .hodnoceni .dropdown .popisek .isi-face-prinosne::before,
-.prispevek .autor .total .isi-face-prinosne + span span:first-child::before {
-    content: "Informačně přínosné";
+fora_reakce = {
+    prinosne: "Informačně přínosné"
+    otravne: "Otravné"
+    zajimave: "Zajímavé"
+    vtipne: "Vtipné"
+    mimo-tema: "Mimo téma"
+    nemam-nazor: "Nemám názor"
 }
 
-.prispevek .autor .hodnoceni .dropdown .popisek .isi-face-otravne::before,
-.prispevek .autor .total .isi-face-otravne + span span:first-child::before {
-    content: "Otravné";
+for zkr, lab in fora_reakce {
+    .prispevek .autor .hodnoceni .dropdown .popisek .isi-face-{zkr}::before,
+    .prispevek .autor .total .isi-face-{zkr} + span span:first-child::before {
+        content: lab
+    }
 }
 
-.prispevek .autor .hodnoceni .dropdown .popisek .isi-face-zajimave::before,
-.prispevek .autor .total .isi-face-zajimave + span span:first-child::before {
-    content: "Zajímavé";
-}
-
-.prispevek .autor .hodnoceni .dropdown .popisek .isi-face-vtipne::before,
-.prispevek .autor .total .isi-face-vtipne + span span:first-child::before {
-    content: "Vtipné";
-}
-
-.prispevek .autor .hodnoceni .dropdown .popisek .isi-face-mimo-tema::before,
-.prispevek .autor .total .isi-face-mimo-tema + span span:first-child::before {
-    content: "Mimo téma";
-}
-
-.prispevek .autor .hodnoceni .dropdown .popisek .isi-face-nemam-nazor::before,
-.prispevek .autor .total .isi-face-nemam-nazor + span span:first-child::before {
-    content: "Nemám názor";
-}
 
 #app_content .prispevek .hodnoceni .vtipne {
     color: #2db4a7;
@@ -1179,79 +1127,94 @@ h2 + .forum_rezimy .forum_rezim {
 }
 } /* if retroFora */
 }
-@-moz-document url-prefix("https://is.muni.cz/auth/rozvrh/zobraz/") {
+@-moz-document url-prefix("https://is.muni.cz/auth/rozvrh") {
 /*** Time table (new) ***/
 
-@media screen and (min-width: 64em) {
+@media velke {
 
-    #rozvrh_tabulka tbody th {
-        background-color: white;
-        color: black;
-        font-size: 120%;
-    }
-    #rozvrh_tabulka td.seminar,
-    #app_content .legenda > div.seminar::before {
-        background-color: #e6f4fd;
-    }
-
-    #rozvrh_tabulka tbody tr,
-    #rozvrh_tabulka tbody th,
-    #rozvrh_tabulka tbody td,
-    #rozvrh_tabulka .den-horni-radek:not(:first-child) td,
-    #rozvrh_tabulka {
-        border-color: gray !important;
-    }
-
-    #rozvrh_tabulka tbody tr td {
-        border-right: 1px solid;
-        border-left: 1px solid;
-    }
-
-    #rozvrh_tabulka td.mezera {
-        border-right: none !important;
-        border-left: none !important;
+.dulezite_volby + #rozvrh_tabulka {
+    td.mezera {
         background: white;
     }
-
-    #rozvrh_tabulka tbody th {
-        border: 2px solid gray !important;
-    }
-    #rozvrh_tabulka .den-horni-radek:not(:first-child) td,
-    #rozvrh_tabulka tr:first-child td {
-        border-top-width: 2px !important;
-    }
-    #rozvrh_tabulka tbody tr:last-child td {
-        border-bottom-width: 2px !important;
-    }
-    #rozvrh_tabulka tbody tr {
-        border-right-width: 2px !important;
-    }
-
-
-    #rozvrh_tabulka tbody tr td:not(.konci_presne) .cas_od_do,
-    #rozvrh_tabulka tbody tr td:not(.zacina_presne) .cas_od_do {
-        display: block !important;
-    }
-
-    #rozvrh_tabulka tbody td > span.predmet_kod,
-    #rozvrh_tabulka tbody td > span.predmet_nazev {
-        display: inline;
-        white-space: unset;
-    }
-    #rozvrh_tabulka tbody td > span.predmet_kod > a {
-        color: #002776;
-        font-weight: 500;
-    }
-    #rozvrh_tabulka tbody td > span.predmet_nazev {
-        font-size: 90%;
-    }
-    #rozvrh_tabulka td.poznamka .predmet_nazev::before {
-        margin-right: 0;
+    .predmet_nazev {
+        margin: 0;
     }
 }
 
-#rozvrh_tabulka .predmet_nazev {
-    margin: 0;
+
+if retroRozvrh {
+    barva_seminar = #e6f4fd
+
+    #app_content .legenda > div.seminar::before {
+        background-color: barva_seminar;
+    }
+
+    .dulezite_volby + #rozvrh_tabulka {
+        td.seminar{
+            background-color: barva_seminar;
+        }
+
+        tbody th {
+            background-color: white;
+            color: black;
+            font-size: 120%;
+        }
+
+        tbody tr,
+        tbody th,
+        tbody td,
+        .den-horni-radek:not(:first-child) td,
+        {
+            border-color: gray !important;
+        }
+
+        tbody tr td {
+            border-right: 1px solid;
+            border-left: 1px solid;
+        }
+
+        td.mezera {
+            border-right: none !important;
+            border-left: none !important;
+        }
+
+        tbody th {
+            border: 2px solid gray !important;
+        }
+        .den-horni-radek:not(:first-child) td,
+        tr:first-child td {
+            border-top-width: 2px !important;
+        }
+        tbody tr:last-child td {
+            border-bottom-width: 2px !important;
+        }
+        tbody tr {
+            border-right-width: 2px !important;
+        }
+
+
+        tbody tr td:not(.konci_presne) .cas_od_do,
+        tbody tr td:not(.zacina_presne) .cas_od_do {
+            display: block !important;
+        }
+
+        tbody td > span.predmet_kod,
+        tbody td > span.predmet_nazev {
+            display: inline;
+            white-space: unset;
+        }
+        tbody td > span.predmet_kod > a {
+            color: #002776;
+            font-weight: 500;
+        }
+        tbody td > span.predmet_nazev {
+            font-size: 90%;
+        }
+        td.poznamka .predmet_nazev::before {
+            margin-right: 0;
+        }
+    }
+}
 }
 }
 
@@ -1271,56 +1234,22 @@ body.en .hlavicka .stitek.skola_14 {
 
 
 /* Emblems in fora and right panel (and perhaps elsewhere) */
-[style *= "loga/profilove/M14.svg"],
-[style *= "loga/profilove/M14-pracoviste.svg"],
-img[src = "/pics/design/r6/loga/14.svg"],
-.logo-14 {
+pracoviste = keys(extend(fakulty,{"14":"x","14-pracoviste":"x"})) // append doesn't seem to work
+for fid in pracoviste {
+    [{"style *= 'loga/profilove/M" + fid + ".svg'"}],
+    img[{"src = '/pics/design/r6/loga/" + fid + ".svg'"}],
+    .logo-{fid} {
+        background-image: url("https://is.muni.cz/auth/www/adamat/konserva/" + fid + ".svg") !important;
+    }
+
+    .zivot_wrap div.logo[{"style *= 'loga/profilove/M" + fid + ".svg'"}] {
+        background-color: white;
+        background-position: 50% !important;
+        background-size: 90% !important;
+    }
+}
+[style *= "loga/profilove/M14-pracoviste.svg"] {
     background-image: url("https://is.muni.cz/auth/www/adamat/konserva/14.svg") !important;
-}
-[style *= "loga/profilove/M1411.svg"],
-img[src = "/pics/design/r6/loga/1411.svg"],
-.logo-1411 {
-    background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1411.svg") !important;
-}
-[style *= "loga/profilove/M1421.svg"],
-img[src = "/pics/design/r6/loga/1421.svg"],
-.logo-1421 {
-    background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1421.svg") !important;
-}
-[style *= "loga/profilove/M1422.svg"],
-img[src = "/pics/design/r6/loga/1422.svg"],
-.logo-1422 {
-    background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1422.svg") !important;
-}
-[style *= "loga/profilove/M1423.svg"],
-img[src = "/pics/design/r6/loga/1423.svg"],
-.logo-1423 {
-    background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1423.svg") !important;
-}
-[style *= "loga/profilove/M1431.svg"],
-img[src = "/pics/design/r6/loga/1431.svg"],
-.logo-1431 {
-    background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1431.svg") !important;
-}
-[style *= "loga/profilove/M1433.svg"],
-img[src = "/pics/design/r6/loga/1433.svg"],
-.logo-1433 {
-    background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1433.svg") !important;
-}
-[style *= "loga/profilove/M1441.svg"],
-img[src = "/pics/design/r6/loga/1441.svg"],
-.logo-1441 {
-    background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1441.svg") !important;
-}
-[style *= "loga/profilove/M1451.svg"],
-img[src = "/pics/design/r6/loga/1451.svg"],
-.logo-1451 {
-    background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1451.svg") !important;
-}
-[style *= "loga/profilove/M1456.svg"],
-img[src = "/pics/design/r6/loga/1456.svg"],
-.logo-1456 {
-    background-image: url("https://is.muni.cz/auth/www/adamat/konserva/1456.svg") !important;
 }
 
 button.no-design[class *= "logo-14"]::before,
@@ -1345,21 +1274,6 @@ img[src *= "/pics/design/r6/loga/14"] {
     background-image: url("https://fi.muni.cz/images/fi-logo.png") !important;
 }
 
-.zivot_wrap div.logo[style *= "loga/profilove/M14-pracoviste.svg"],
-.zivot_wrap div.logo[style *= "loga/profilove/M14.svg"],
-.zivot_wrap div.logo[style *= "loga/profilove/M1411.svg"],
-.zivot_wrap div.logo[style *= "loga/profilove/M1421.svg"],
-.zivot_wrap div.logo[style *= "loga/profilove/M1422.svg"],
-.zivot_wrap div.logo[style *= "loga/profilove/M1423.svg"],
-.zivot_wrap div.logo[style *= "loga/profilove/M1431.svg"],
-.zivot_wrap div.logo[style *= "loga/profilove/M1433.svg"],
-.zivot_wrap div.logo[style *= "loga/profilove/M1441.svg"],
-.zivot_wrap div.logo[style *= "loga/profilove/M1451.svg"],
-.zivot_wrap div.logo[style *= "loga/profilove/M1456.svg"] {
-    background-color: white;
-    background-position: 50% !important;
-    background-size: 90% !important;
-}
 } /* if staraLoga */
 }
 
@@ -1372,7 +1286,7 @@ img[src *= "/pics/design/r6/loga/14"] {
     background-color: white;
 }
 
-@media screen and (min-width: 64em) {
+@media velke {
     #io-editor #io-main-row,
     #io-name-header:not(.hide) ~ #io-main-row {
         padding-left: 1.07143rem;
@@ -1471,8 +1385,11 @@ table.tab_udaje_table {
     }
 }
 
-#lide_karty + .tabs-content h3.nadpis-sekce {
-    margin-top: 1ex;
+#lide_karty + .tabs-content {
+    min-height: unset;
+    h3.nadpis-sekce {
+        margin-top: 1ex;
+    }
 }
 
 }
