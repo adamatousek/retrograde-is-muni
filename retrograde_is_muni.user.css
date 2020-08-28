@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Zpátečnický IS MUNI
 @namespace      github.com/adamatousek/
-@version        1.1.1
+@version        1.1.2
 @description    Boj proti větrnému mlýnu, jímž je Nový IS.
 @author         Adam Matoušek
 @homepageURL    https://github.com/adamatousek/retrograde-is-muni
@@ -38,6 +38,10 @@ fakulty = {
     "1411" : {
         zkr: "LF"
         barva: red
+    }
+    "1416" : {
+        zkr: "FaF"
+        barva: grey
     }
     "1421" : {
         zkr: "FF"
@@ -99,7 +103,7 @@ html.auth body {
 
 /* Signature */
 footer .paticka_logo > div > div:after {
-    content: "Používá styl „Zpátečnický IS MUNI“ v. 1.1.1";
+    content: "Používá styl „Zpátečnický IS MUNI“ v. 1.1.2";
     font-size: 0.875rem;
     font-weight: 300;
     display: block;
@@ -1244,6 +1248,7 @@ pracoviste = keys(extend(fakulty,{"14":"x","14-pracoviste":"x"})) // append does
 for fid in pracoviste {
     [{"style *= 'loga/profilove/M" + fid + ".svg'"}],
     img[{"src = '/pics/design/r6/loga/" + fid + ".svg'"}],
+    img[{"src = '/pics/design/r6/loga/profilove/M" + fid + ".svg'"}],
     .logo-{fid} {
         background-image: url("https://is.muni.cz/auth/www/adamat/konserva/" + fid + ".svg") !important;
     }
@@ -1270,6 +1275,7 @@ button.no-design[class *= "logo-14"],
 
 /* "Hide" original (src) image to show our background underneath */
 
+img[src *= "/pics/design/r6/loga/profilove/M14"],
 img[src *= "/pics/design/r6/loga/14"] {
     object-position: 999px 999px;
 }
