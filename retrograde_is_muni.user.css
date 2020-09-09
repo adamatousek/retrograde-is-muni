@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Zpátečnický IS MUNI
 @namespace      github.com/adamatousek/
-@version        1.1.2
+@version        1.1.3
 @description    Boj proti větrnému mlýnu, jímž je Nový IS.
 @author         Adam Matoušek
 @homepageURL    https://github.com/adamatousek/retrograde-is-muni
@@ -87,7 +87,12 @@ co-velke = "screen and (max-width: 63.99em)"
 mobil = "screen and (max-width: 39.9375em)"
 co-mobil = "screen and (min-width: 40em)"
 
-tmavemodra = #002265
+tmavemodra = #002776
+svetlemodra = #e0edfd
+
+sedepozadi() {
+    background-color: shade(pozadi, 2%);
+}
 
 @-moz-document url-prefix("https://is.muni.cz/auth/") {
 /*****************************************************\
@@ -101,9 +106,21 @@ html.auth body {
     color: #000;
 }
 
+.filtr_box,
+.covid_box,
+.covid_semafor
+{
+    sedepozadi()
+}
+
+.covid_semafor .covid_svetlo {
+    border-width: 3px;
+    border-color: #aaa;
+}
+
 /* Signature */
 footer .paticka_logo > div > div:after {
-    content: "Používá styl „Zpátečnický IS MUNI“ v. 1.1.2";
+    content: "Používá styl „Zpátečnický IS MUNI“ v. 1.1.3";
     font-size: 0.875rem;
     font-weight: 300;
     display: block;
@@ -214,7 +231,7 @@ if bezPripinacku {
 
 #app_menu {
     background: #FFF;
-    color: #002776;
+    color: tmavemodra;
     border-top: 1px solid gray;
 }
 
@@ -227,12 +244,12 @@ if bezPripinacku {
     line-height: 1.6rem;
     font-size: 1rem;
     height: auto;
-    color: #002776;
+    color: tmavemodra;
     padding: 0 1rem;
 }
 
 #app_menu ul.dropdown.menu > li > a {
-    color: #002776;
+    color: tmavemodra;
 }
 
 #app_menu_items > .polozka::after {
@@ -393,7 +410,7 @@ i.ikona-agenda {
     &.isi-ucitel
     &.isi-e-volby
     &.isi-posta
-    { color: #002776; }
+    { color: tmavemodra; }
 
     &.isi-skolitel
     &.isi-uradovna
@@ -455,7 +472,7 @@ i.ikona-agenda {
     width: 25em;
     margin: 0;
     box-shadow: none;
-    border-color: #002776;
+    border-color: tmavemodra;
 }
 
 #tab-content-predmety .vyhledavani_form_is_icon {
@@ -616,15 +633,15 @@ else if mojePredmety == fBarva {
 
 .student_row_c .button {
     background-color: #fff;
-    border: 1px solid #002776;
-    color: #002776;
+    border: 1px solid tmavemodra;
+    color: tmavemodra;
     margin: 0.7rem 0 1.5em;
 }
 
 .student_row_c .button:hover {
-    background-color: #e0edfd;
-    border: 1px solid #002776;
-    color: #002776;
+    background-color: svetlemodra;
+    border: 1px solid tmavemodra;
+    color: tmavemodra;
 }
 
 .student_row_c .button.disabled {
@@ -651,7 +668,7 @@ else if mojePredmety == fBarva {
 
 .spravce_souboru .sedy-box,
 .spravce_souboru .vyhledavani {
-    background-color: #dfdfdf40;
+    sedepozadi();
     border-color: #dfdfdfff;
 }
 
@@ -1214,7 +1231,7 @@ if retroRozvrh {
             white-space: unset;
         }
         tbody td > span.predmet_kod > a {
-            color: #002776;
+            color: tmavemodra;
             font-weight: 500;
         }
         tbody td > span.predmet_nazev {
@@ -1244,6 +1261,12 @@ body.en .hlavicka .stitek.skola_14 {
 
 
 /* Emblems in fora and right panel (and perhaps elsewhere) */
+[style ^= 'loga/profilove/M14'],
+img[src ^= '/pics/design/r6/loga/14'],
+img[src ^= '/pics/design/r6/loga/profilove/M14'],
+{
+    background-image: url("https://is.muni.cz/auth/www/adamat/konserva/14-pracoviste.svg") !important;
+}
 pracoviste = keys(extend(fakulty,{"14":"x","14-pracoviste":"x"})) // append doesn't seem to work
 for fid in pracoviste {
     [{"style *= 'loga/profilove/M" + fid + ".svg'"}],
@@ -1356,7 +1379,7 @@ div.pa_projekt_rozsireni {
 
 .muj_student_operace a:after{
     content: attr(title);
-    color: #002265;
+    color: tmavemodra;
 }
 #vztah_k_osobe .lide_muj_student_soucasne > .column > div {
     padding-bottom: 0.5rem;
@@ -1405,7 +1428,7 @@ div.pa_projekt_rozsireni {
 
 table.tab_udaje_table {
     thead th {
-        background-color: #e0edfd !important;
+        background-color: svetlemodra !important;
         font-size: 110%;
         border-bottom: 1px solid black;
         margin-bottom: 0.5em;
