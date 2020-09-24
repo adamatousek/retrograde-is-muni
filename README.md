@@ -1,4 +1,6 @@
-# Zpátečnický IS MUNI
+# Zpátečnický IS MU
+
+*Uživatelský stylopis pro `is.muni.cz`*
 
 [![Install directly with Stylus or Stylish](https://img.shields.io/badge/Nainstalovat%20pomoc%C3%AD-Stylus-00adad.svg)](https://raw.githubusercontent.com/adamatousek/retrograde-is-muni/master/retrograde_is_muni.user.css)
 
