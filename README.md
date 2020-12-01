@@ -26,6 +26,7 @@ kolečko u jména stylu). Takto nastavit je nyní lze:
 * **Stará loga**: zda chcete nový hnus přebít starými logy.
 * **Nová fóra** se dají přestylovat na něco použitelnějšího.
 * **Nový rozvrh** lze volitelně mírně přestylovat.
+* **Hodnocení** příspěvků ve fórech je možné skrýt až do najetí.
 * **Barvy úvodní stránky**: zda chcete přebít barvy kulatých ikon na titulní
   stránce (protože třeba ve stylu „Minimální“ jsou docela ošklivé).
 * **Pravý panel** připomínající ten ze starého ISu.
