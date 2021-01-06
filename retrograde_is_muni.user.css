@@ -1,14 +1,18 @@
 /* ==UserStyle==
 @name           Zpátečnický IS MU
 @namespace      github.com/adamatousek/
-@version        1.1.4
+@version        1.1.5
 @description    Boj proti větrnému mlýnu, jímž je Nový IS Masarykovy university.
 @author         Adam Matoušek
 @homepageURL    https://github.com/adamatousek/retrograde-is-muni
 @license        CC-BY-4.0
 
 @preprocessor   stylus
-@var            checkbox staraLoga "Použít stará loga" 1
+@var            select   stylLog "Použitá loga" [
+                    "jednoduchaLoga:Zjednodušená stará loga",
+                    "staraLoga:Stará loga",
+                    "novaLoga:Nová loga"
+                ]
 @var            checkbox retroFora "Přestylovat nová fóra" 1
 @var            checkbox bezHodnoceni "Hodnocení příspěvků až při najetí" 0
 @var            checkbox retroRozvrh "Přestylovat rozvrh" 1
@@ -88,6 +92,13 @@ co-velke = "screen and (max-width: 63.99em)"
 mobil = "screen and (max-width: 39.9375em)"
 co-mobil = "screen and (min-width: 40em)"
 
+stitky = "https://is.muni.cz/auth/www/adamat/konserva/"
+if stylLog == jednoduchaLoga {
+    loga = stitky + "simplified/"
+} else {
+    loga = stitky
+}
+
 tmavemodra = #002776
 svetlemodra = #e0edfd
 
@@ -121,7 +132,7 @@ html.auth body {
 
 /* Signature */
 footer .paticka_logo > div > div:after {
-    content: "Používá styl „Zpátečnický IS MU“ v. 1.1.4";
+    content: "Používá styl „Zpátečnický IS MU“ v. 1.1.5";
     font-size: 0.875rem;
     font-weight: 300;
     display: block;
@@ -1269,7 +1280,7 @@ if retroRozvrh {
 }
 
 @-moz-document url-prefix("https://is.muni.cz/auth/") {
-if staraLoga {
+if stylLog != novaLoga {
 /*** Logos ***/
 
 /* Main logo */
@@ -1277,7 +1288,7 @@ if staraLoga {
 body.en .motiv-titulka .hlavicka .stitek.skola_14,
 .hlavicka .stitek.skola_14,
 body.en .hlavicka .stitek.skola_14 {
-    background-image: url("https://is.muni.cz/auth/www/adamat/konserva/IS_stitek_cs.svg") !important;
+    background-image: url(stitky "IS_stitek_cs.svg") !important;
     background-size: contain;
     background-position: unset;
 }
@@ -1288,7 +1299,7 @@ body.en .hlavicka .stitek.skola_14 {
 img[src ^= '/pics/design/r6/loga/14'],
 img[src ^= '/pics/design/r6/loga/profilove/M14'],
 {
-    background-image: url("https://is.muni.cz/auth/www/adamat/konserva/14-pracoviste.svg") !important;
+    background-image: url(loga"14-pracoviste.svg") !important;
 }
 pracoviste = keys(extend(fakulty,{"14":"x","14-pracoviste":"x"})) // append doesn't seem to work
 for fid in pracoviste {
@@ -1296,17 +1307,27 @@ for fid in pracoviste {
     img[{"src = '/pics/design/r6/loga/" + fid + ".svg'"}],
     img[{"src = '/pics/design/r6/loga/profilove/M" + fid + ".svg'"}],
     .logo-{fid} {
-        background-image: url("https://is.muni.cz/auth/www/adamat/konserva/" + fid + ".svg") !important;
+        background-image: url(loga + fid + ".svg") !important;
+        if stylLog == jednoduchaLoga {
+            &.forum_nazev {
+                background-size: 2.4em !important;
+                background-position: -0.2em !important;
+            }
+        }
     }
 
     .zivot_wrap div.logo[{"style *= 'loga/profilove/M" + fid + ".svg'"}] {
         background-color: white;
         background-position: 50% !important;
-        background-size: 90% !important;
+        if stylLog == jednoduchaLoga {
+            background-size: 100% !important;
+        } else {
+            background-size: 90% !important;
+        }
     }
 }
 [style *= "loga/profilove/M14-pracoviste.svg"] {
-    background-image: url("https://is.muni.cz/auth/www/adamat/konserva/14.svg") !important;
+    background-image: url(loga "14.svg") !important;
 }
 
 button.no-design[class *= "logo-14"]::before,
@@ -1329,10 +1350,22 @@ img[src *= "/pics/design/r6/loga/14"] {
 /* Right panel adjustments */
 
 [style *= "loga/profilove/M1433.svg"] {
-    background-image: url("https://fi.muni.cz/images/fi-logo.png") !important;
+    if stylLog != jednoduchaLoga {
+        background-image: url("https://fi.muni.cz/images/fi-logo.png") !important;
+    }
 }
 
-} /* if staraLoga */
+/* White background (not globally, because who knows where that could fail */
+#noticeboard .grafika .logo {
+    background-color: white !important;
+}
+
+table.inverzne > tbody > tr:first-child > td:first-child img {
+    background-color: white !important;
+    border-radius: 50%;
+}
+
+} /* if stylLog != novaLoga */
 }
 
 @-moz-document url-prefix("https://is.muni.cz/auth/") {
