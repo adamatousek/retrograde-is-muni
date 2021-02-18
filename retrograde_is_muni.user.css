@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Zpátečnický IS MU
 @namespace      github.com/adamatousek/
-@version        1.1.5
+@version        1.2.0
 @description    Boj proti větrnému mlýnu, jímž je Nový IS Masarykovy university.
 @author         Adam Matoušek
 @homepageURL    https://github.com/adamatousek/retrograde-is-muni
@@ -106,7 +106,7 @@ sedepozadi() {
     background-color: shade(pozadi, 2%);
 }
 
-@-moz-document url-prefix("https://is.muni.cz/auth/") {
+@-moz-document url-prefix("https://is.muni.cz/") {
 /*****************************************************\
  Zpátečnický IS MU
 \*****************************************************/
@@ -132,7 +132,7 @@ html.auth body {
 
 /* Signature */
 footer .paticka_logo > div > div:after {
-    content: "Používá styl „Zpátečnický IS MU“ v. 1.1.5";
+    content: "Používá styl „Zpátečnický IS MU“ v. 1.2.0";
     font-size: 0.875rem;
     font-weight: 300;
     display: block;
@@ -731,7 +731,7 @@ div.ik_qref::before { /* Questionary */
 
 }
 
-@-moz-document url-prefix("https://is.muni.cz/auth/discussion") {
+@-moz-document url-prefix("https://is.muni.cz/auth/discussion"), url-prefix("https://is.muni.cz/discussion") {
 if retroFora {
 
 /*** New discussion fora ***/
@@ -1279,7 +1279,7 @@ if retroRozvrh {
 }
 }
 
-@-moz-document url-prefix("https://is.muni.cz/auth/") {
+@-moz-document url-prefix("https://is.muni.cz/") {
 if stylLog != novaLoga {
 /*** Logos ***/
 
@@ -1368,7 +1368,7 @@ table.inverzne > tbody > tr:first-child > td:first-child img {
 } /* if stylLog != novaLoga */
 }
 
-@-moz-document url-prefix("https://is.muni.cz/auth/") {
+@-moz-document url-prefix("https://is.muni.cz/") {
 /***** Interactive Outlines, new Questionaries and Peer assessment *****/
 
 /*** Interactive Outlines ***/
@@ -1429,7 +1429,7 @@ div.pa_projekt_rozsireni {
 }
 }
 
-@-moz-document url-prefix("https://is.muni.cz/auth/osoba") {
+@-moz-document url-prefix("https://is.muni.cz/auth/osoba"), url-prefix("https://is.muni.cz/osoba") {
 
 /*** Personal page ***/
 
