@@ -368,6 +368,20 @@ if retroPravy {
     padding-top: 0.2rem;
 }
 
+.sekce.hlavni .sekce-header,
+.hlasovani.aktivni .hlasovani-header {
+    background-color: svetlemodra;
+}
+.sekce-content {
+    background-color: white;
+}
+.sekce-header {
+    sedepozadi();
+}
+
+.stitek-inline.si-outline {
+    background-color: white;
+}
 
 /* Tiles with links */
 .tile-box > .tile-basic,
