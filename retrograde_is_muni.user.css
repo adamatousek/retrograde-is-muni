@@ -1444,6 +1444,14 @@ div.pa_projekt_novy a {
 div.pa_projekt_rozsireni {
     background-color: white;
 }
+
+
+/*** Polls ***/
+
+div.pruzkum-banner {
+    background-color:white;
+}
+
 }
 
 @-moz-document url-prefix("https://is.muni.cz/auth/osoba"), url-prefix("https://is.muni.cz/osoba") {
