@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Zpátečnický IS MU
 @namespace      github.com/adamatousek/
-@version        1.2.0
+@version        1.2.1
 @description    Boj proti větrnému mlýnu, jímž je Nový IS Masarykovy university.
 @author         Adam Matoušek
 @homepageURL    https://github.com/adamatousek/retrograde-is-muni
@@ -128,7 +128,7 @@ html.auth body {
 
 /* Signature */
 footer .paticka_logo > div > div:after {
-    content: "Používá styl „Zpátečnický IS MU“ v. 1.2.0";
+    content: "Používá styl „Zpátečnický IS MU“ v. 1.2.1";
     font-size: 0.875rem;
     font-weight: 300;
     display: block;
