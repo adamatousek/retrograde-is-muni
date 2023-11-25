@@ -479,6 +479,12 @@ i.ikona-agenda {
 }
 */
 
+/* Gray boxes (look bad with blueish background) */
+
+.filtr_box {
+    background-color: rgba(127,127,127,0.06);
+}
+
 /*** Student ***/
 
 /* Search bar */
