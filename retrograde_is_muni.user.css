@@ -107,10 +107,6 @@ sedepozadi() {
 }
 
 @-moz-document url-prefix("https://is.muni.cz/") {
-/*****************************************************\
- Zpátečnický IS MU
-\*****************************************************/
-
 /*** General ***/
 
 html.auth body {
@@ -746,9 +742,9 @@ div.ik_qref::before { /* Questionary */
 }
 
 @-moz-document url-prefix("https://is.muni.cz/auth/discussion"), url-prefix("https://is.muni.cz/discussion") {
-if retroFora {
+/*** Discussion fora ***/
 
-/*** New discussion fora ***/
+if retroFora {
 
 /* Pop-up quirks */
 /* Needed so that the two floating panels look good together while pop-ups
@@ -1293,9 +1289,12 @@ if retroRozvrh {
 }
 }
 
+
 @-moz-document url-prefix("https://is.muni.cz/") {
-if stylLog != novaLoga {
+
 /*** Logos ***/
+
+if stylLog != novaLoga {
 
 /* Main logo */
 .motiv-titulka .hlavicka .stitek.skola_14,
@@ -1383,7 +1382,7 @@ table.inverzne > tbody > tr:first-child > td:first-child img {
 }
 
 @-moz-document url-prefix("https://is.muni.cz/") {
-/***** Interactive Outlines, new Questionaries and Peer assessment *****/
+/**** New apps ****/
 
 /*** Interactive Outlines ***/
 
