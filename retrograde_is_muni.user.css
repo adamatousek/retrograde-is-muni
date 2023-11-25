@@ -1308,15 +1308,19 @@ body.en .hlavicka .stitek.skola_14 {
 
 
 /* Emblems in fora and right panel (and perhaps elsewhere) */
-[style ^= 'loga/profilove/M14'],
+[style *= 'loga/profilove/M14'],
+[style *= '/pics/design/r6/loga/14'],
+[style *= '/pics/design/r6/loga/ics.svg'],
 img[src ^= '/pics/design/r6/loga/14'],
 img[src ^= '/pics/design/r6/loga/profilove/M14'],
+img[src ^= '/pics/design/r6/loga/ics.svg']
 {
     background-image: url(loga"14-pracoviste.svg") !important;
 }
 pracoviste = keys(extend(fakulty,{"14":"x","14-pracoviste":"x"})) // append doesn't seem to work
 for fid in pracoviste {
     [{"style *= 'loga/profilove/M" + fid + ".svg'"}],
+    [{"style *= '/pics/design/r6/loga/" + fid + ".svg'"}],
     img[{"src = '/pics/design/r6/loga/" + fid + ".svg'"}],
     img[{"src = '/pics/design/r6/loga/profilove/M" + fid + ".svg'"}],
     .logo-{fid} {
