@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Zpátečnický IS MU
 @namespace      github.com/adamatousek/
-@version        1.2.1
+@version        1.3.0
 @description    Boj proti větrnému mlýnu, jímž je Nový IS Masarykovy university.
 @author         Adam Matoušek
 @homepageURL    https://github.com/adamatousek/retrograde-is-muni
@@ -31,10 +31,7 @@
                     "Puntík": "\"•\"",
                     "Kroužek": "\"\\f1a4\""
                 }
-@var            select   pozadi    "Barva pozadí" {
-                    "Namodralá (starý IS)*": "#F7F8FC",
-                    "Bílá": "white"
-                }
+@var            checkbox   namodrale    "Namodralé pozadí (starý IS)" 0
 ==/UserStyle== */
 
 /*** Per-faculty data ***/
@@ -101,24 +98,27 @@ if stylLog == jednoduchaLoga {
 
 tmavemodra = #002776
 svetlemodra = #e0edfd
+staromodra = #F7F8FC
 
-sedepozadi() {
-    background-color: shade(pozadi, 2%);
-}
+light-theme = "body.motiv-svetly"
+dark-theme = "body.motiv-tmavy"
+iflight = "/body.motiv-svetly &"
+ifdark = "/body.motiv-tmavy &"
 
 @-moz-document url-prefix("https://is.muni.cz/") {
 /*** General ***/
 
-html.auth body {
-    background: pozadi !important; /* Old IS */
+if namodrale {
+
+html.auth body.motiv-svetly {
+    --bgbarva-seda1: tint(staromodra, 30%);
+    --bgbarva-seda2: shade(staromodra, 4%);
+    --bgbarva-seda3: shade(staromodra, 6%);
+
+    background: staromodra;
     color: #000;
 }
 
-.filtr_box,
-.covid_box,
-.covid_semafor
-{
-    sedepozadi()
 }
 
 .covid_semafor .covid_svetlo {
@@ -128,7 +128,7 @@ html.auth body {
 
 /* Signature */
 footer .paticka_logo > div > div:after {
-    content: "Používá styl „Zpátečnický IS MU“ v. 1.2.1";
+    content: "Používá styl „Zpátečnický IS MU“ v. 1.3.0";
     font-size: 0.875rem;
     font-weight: 300;
     display: block;
@@ -168,8 +168,8 @@ footer .footer_cas::after {
 
 /* Search bar */
 
-#vyhledavani_form .input-group-label,
-#vyhledavani_form .input-group-label.vyhledavani_form_is_icon {
+{light-theme} #vyhledavani_form .input-group-label,
+{light-theme} #vyhledavani_form .input-group-label.vyhledavani_form_is_icon {
     background-color: rgba(254, 254, 254, 0.6);
 }
 
@@ -182,8 +182,10 @@ footer .footer_cas::after {
 }
 
 #sticky_panel.bgr {
-    background: #F5F6F8;
-    border-bottom: 1px solid #ddd;
+    {iflight} {
+        background: #F5F6F8;
+        border-bottom: 1px solid #ddd;
+    }
     z-index: 90;
 }
 
@@ -225,7 +227,12 @@ footer .footer_cas::after {
 }
 
 #left_menu .tags > li > a:hover {
-    background-image: linear-gradient(to right, #4452 0%, transparent 100%);
+    {iflight} {
+        background-image: linear-gradient(to right, #4452 0%, transparent 100%);
+    }
+    {ifdark} {
+        background-image: linear-gradient(to right, #aa82 0%, transparent 100%);
+    }
 }
 
 if bezPripinacku {
@@ -237,10 +244,15 @@ if bezPripinacku {
 
 /* Horisontal menu */
 
-#app_menu {
+{light-theme} #app_menu {
     background: #FFF;
     color: tmavemodra;
     border-top: 1px solid gray;
+}
+
+{dark-theme} #app_menu {
+    background: var(--bgbarva-seda4);
+    border-top: 1px solid var(--bordersedy-dark)
 }
 
 #app_menu_items {
@@ -252,8 +264,10 @@ if bezPripinacku {
     line-height: 1.6rem;
     font-size: 1rem;
     height: auto;
-    color: tmavemodra;
     padding: 0 1rem;
+    {iflight} {
+        color: tmavemodra;
+    }
 }
 
 #app_menu ul.dropdown.menu > li > a {
@@ -306,11 +320,30 @@ if retroPravy {
 }
 
 .zivot_wrap {
-    background: #F3F3F3;
-    box-shadow: 0px 0px 1px #8E9294;
-    border: 1px solid white;
     border-radius: 2px;
     padding: 1em;
+}
+
+{light-theme} {
+    .zivot_wrap {
+        background: #F3F3F3;
+        box-shadow: 0px 0px 1px #8E9294;
+        border: 1px solid white;
+    }
+    .zivot_wrap .prispevek > .text {
+        color: #333;
+    }
+}
+
+{dark-theme} {
+    .zivot_wrap {
+        background: #202020;
+        border: 1px solid var(--bordersedy);
+    }
+    .zivot_wrap .prispevek .crazy_border,
+    .zivot_wrap .prispevek .crazy_border::before {
+        border-color: #555;
+    }
 }
 
 .zivot_wrap a .nazev {
@@ -331,25 +364,26 @@ if retroPravy {
     font-size: 120%;
 }
 
-.zivot_wrap .prispevek > .text {
-    color: #333;
-}
 } /* if retroPravy */
 
 /* Tabbed containers (e.g. the one in the 'Student' app) */
 
 .tabs-container {
     margin: 1rem 0 0;
-    border-top: 2px solid #fdfdfd;
+    {iflight} {
+        border-top: 2px solid #fdfdfd;
+    }
 }
-.tabs {
+{light-theme} .tabs {
     border-color: #dbdbdb;
     box-shadow: 0 4px 4px #f0f0f0 inset;
 }
 
 .tabs-title > a {
     padding: 0.7rem 1.5rem;
-    border-top: none !important;
+    {iflight} {
+        border-top: none !important;
+    }
 }
 
 .tabs-title > a:focus,
@@ -364,6 +398,7 @@ if retroPravy {
     padding-top: 0.2rem;
 }
 
+{light-theme} {
 .sekce.hlavni .sekce-header,
 .hlasovani.aktivni .hlasovani-header {
     background-color: svetlemodra;
@@ -371,18 +406,10 @@ if retroPravy {
 .sekce-content {
     background-color: white;
 }
-.sekce-header {
-    sedepozadi();
-}
 
 .stitek-inline.si-outline {
     background-color: white;
 }
-
-/* Tiles with links */
-.tile-box > .tile-basic,
-.tile-box > .tile-button {
-    background-color: #8080800b;
 }
 
 /* Old bullets */
@@ -405,12 +432,10 @@ dl:not([class]) dt::before,
 /*** Title page ***/
 
 if barvyTitulka {
+
+{light-theme} {
 #dlazdice {
     background-color: #fff6;
-}
-
-.motiv-titulka .app_header_motiv_switch {
-    padding-right: 0;
 }
 
 #obsah .dlazdice a > i.ikona-agenda {
@@ -466,6 +491,8 @@ i.ikona-agenda {
     { color: #e6bb08; }
 }
 
+}
+
 } /* if barvyTitulka */
 
 /*
@@ -478,12 +505,6 @@ i.ikona-agenda {
     box-shadow: 0px -1px 1px #bbb;
 }
 */
-
-/* Gray boxes (look bad with blueish background) */
-
-.filtr_box {
-    background-color: rgba(127,127,127,0.06);
-}
 
 /*** Student ***/
 
@@ -505,10 +526,10 @@ i.ikona-agenda {
 
 #tab-content-predmety .vyhledavani_form_is_icon {
     padding: 0 0em 0.1em 0.8em ;
-    background-color: #F9FFD0 !important;
     background-size: 1.2rem;
     background-position: 0.8rem 0.4rem;
     border-radius: 1rem 0 0 1rem;
+    {iflight} { background-color: #F9FFD0 !important; }
     border-color: inherit;
 }
 
@@ -518,21 +539,23 @@ i.ikona-agenda {
 }
 
 #tab-content-predmety #vyhledavani_form input {
-    background: #F9FFD0;
+    {iflight} { background: #F9FFD0; }
     border-color: inherit;
 }
 
 #tab-content-predmety #vyhledavani_form_x {
-    background: #F9FFD0;
-    border-color: inherit;
-    border-top: solid 1px currentcolor;
-    border-bottom: solid 1px currentcolor;
     font-size: 100%;
     line-height: 160% !important;
+    {iflight} {
+        background: #F9FFD0;
+        border-color: inherit;
+        border-top: solid 1px currentcolor;
+        border-bottom: solid 1px currentcolor;
+    }
 }
 
 #tab-content-predmety #vyhledavani_send_form {
-    border-color:inherit;
+    {iflight} { border-color:inherit; }
     border-radius: 1rem;
     position:relative;
     right: 1rem;
@@ -540,20 +563,24 @@ i.ikona-agenda {
     width: 3rem;
     font-size: 130%;
     line-height: 160% !important;
+    min-height: unset;
 }
 
 /* My courses */
 
 .predmet_conteiner {
-    background: white;
-    border-color: #CCC;
+    {iflight} {
+        background: white;
+        border-color: #CCC;
+    }
     border-radius: 0.4em;
     border-bottom-width: 2px;
 }
 
 .predmet_conteiner.active,
 .predmet_conteiner:hover {
-    border-color: #888;
+    {iflight} { border-color: #888; }
+    {ifdark} { border-color: #444; }
 }
 
 .predmet_header > a:hover,
@@ -566,7 +593,7 @@ i.ikona-agenda {
 }
 
 .predmet_header > .predmet_header_more {
-    color: black;
+    {iflight} { color: black; }
     font-size: 100%;
     padding: 0.3em 0.8em;
     transition: none;
@@ -613,7 +640,8 @@ else if mojePredmety == fBarva {
     display: block;
     width: calc(100% - 0.8em);
     margin-left: 0.4em;
-    border-top: 1px solid #CCC;
+    {iflight} { border-top: 1px solid #CCC; }
+    {ifdark} { border-top: 1px solid var(--bordersedy); }
     content: "";
 }
 
@@ -660,13 +688,15 @@ else if mojePredmety == fBarva {
 }
 
 .student_row_c .button {
-    background-color: #fff;
-    border: 1px solid tmavemodra;
-    color: tmavemodra;
     margin: 0.7rem 0 1.5em;
+    {iflight} {
+        background-color: #fff;
+        border: 1px solid tmavemodra;
+        color: tmavemodra;
+    }
 }
 
-.student_row_c .button:hover {
+{light-theme} .student_row_c .button:hover {
     background-color: svetlemodra;
     border: 1px solid tmavemodra;
     color: tmavemodra;
@@ -694,9 +724,8 @@ else if mojePredmety == fBarva {
 
 /*** File manager ***/
 
-.spravce_souboru .sedy-box,
-.spravce_souboru .vyhledavani {
-    sedepozadi();
+{light-theme} .spravce_souboru .sedy-box,
+{light-theme} .spravce_souboru .vyhledavani {
     border-color: #dfdfdfff;
 }
 
@@ -762,7 +791,8 @@ if retroFora {
     content: "";
     display: block;
     width: 100%;
-    border-bottom: 1px solid pozadi;
+    border-bottom: 1px solid var(--bg);
+    {iflight} { border-color: staromodra if namodraly; }
     position: absolute;
     top: vyska_horniho_panelu;
     left: 0;
@@ -770,7 +800,7 @@ if retroFora {
 }
 
 #sticky_panel.bgr {
-    border-bottom: none;
+    border-bottom: none !important;
 }
 
 .hlavicka .znak{
@@ -790,7 +820,7 @@ if retroFora {
     content: "";
     display: block;
     width: 100%;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid var(--bordersedy);
     position: fixed;
     top: vyska_horniho_panelu;
     left: 0;
@@ -800,14 +830,14 @@ if retroFora {
     position: relative;
     top: -1px;
     background-image: none;
-    border: 1px solid #ddd;
+    border: 1px solid var(--bordersedy);
     box-shadow: none;
 }
 
 /* Thread list mode */
 
 h2 +.forum_rezimy {
-    background: white;
+    background: var(--bg);
     border-top: 1px solid gray;
     padding: 0 1em;
 }
@@ -900,11 +930,11 @@ h2 + .forum_rezimy .forum_rezim {
 
 #app_content .vlakno_radek .foto_wrap {
     margin: 0.4em;
-    border: 1px solid #ddd;
+    border: 1px solid var(--bordersedy-dark);
     width: auto;
     height: auto;
     padding: 0.3rem;
-    background: white;
+    background: var(--bg);
 }
 
 #app_content .vlakno_radek .foto {
@@ -925,7 +955,6 @@ h2 + .forum_rezimy .forum_rezim {
 
 .discussion_sticky .napis {
     font-size: 90%;
-    color: #777;
 }
 
 .discussion_sticky .nazev {
@@ -968,7 +997,8 @@ h2 + .forum_rezimy .forum_rezim {
 
 #app_content .prispevek > .foto_wrap .foto {
     border-radius: 0.4em;
-    border: 0.2em solid white;
+    {iflight} { border: 0.2em solid white; }
+    {ifdark} { border: 0.2em solid #222; }
     box-shadow: 0 0 1px gray;
     background-size: 4em;
 }
@@ -980,7 +1010,7 @@ h2 + .forum_rezimy .forum_rezim {
 }
 
 #discussion .prispevek .autor a > span:first-child {
-    color: black;
+    color: var(--text-plny);
     font-weight: 500;
     font-size: 1rem;
 }
@@ -988,7 +1018,7 @@ h2 + .forum_rezimy .forum_rezim {
 /* display exact date/time */
 #app_content .prispevek .autor > div > div:nth-child(2) > span[title]:not([title=""])::after {
     content: " (" attr(title) ")";
-    color: #555;
+    color: var(--text-mene-vyrazny);
 }
 
 #app_content .prispevek,
@@ -1005,7 +1035,7 @@ h2 + .forum_rezimy .forum_rezim {
 #app_content .prispevek.novy > .obsah > .text,
 #app_content .prispevek > .obsah > .text {
     max-width: 100%;
-    background-color: white !important;
+    background-color: var(--bg) !important;
     padding: 0.5em 1em;
     border-radius: 0.4em;
     margin: 0;
@@ -1019,7 +1049,8 @@ h2 + .forum_rezimy .forum_rezim {
 }
 
 #app_content .prispevek.novy > .obsah {
-    background: linear-gradient(to bottom, #ffebbc 3em, transparent calc( 100% - 1em ));
+    {iflight} { background: linear-gradient(to bottom, #ffebbc 3em, transparent calc( 100% - 1em )); }
+    {ifdark} { background: linear-gradient(to bottom, #312a11 3em, transparent calc( 100% - 1em )); }
     min-height: 0rem;
 }
 
@@ -1039,7 +1070,8 @@ h2 + .forum_rezimy .forum_rezim {
 
 #app_content .parent_preview {
     max-width: 70em;
-    box-shadow: 0 0 1em #888;
+    {iflight} { box-shadow: 0 0 1em #888; }
+    {ifdark} { box-shadow: 0 0 1em #000; }
     border-radius: 0.4em;
 }
 
@@ -1048,7 +1080,8 @@ h2 + .forum_rezimy .forum_rezim {
 }
 
 #app_content .prispevek .hodnoceni ul.dropdown {
-    background-color: rgba(255, 255, 255, .52);
+    {iflight} { background-color: rgba(255, 255, 255, .52); }
+    {ifdark} { background-color: rgba(255, 255, 255, .1); }
     border-radius: .4em;
     padding: 0 0.4em 0 1em;
 }
@@ -1071,7 +1104,7 @@ h2 + .forum_rezimy .forum_rezim {
 }
 
 #app_content .prispevek .autor .hodnoceni .hodnotit {
-    color: #555;
+    color: var(--text-menevyrazny);
 }
 
 #app_content .prispevek .autor .hodnoceni .dropdown .popisek .smajlik {
@@ -1093,7 +1126,7 @@ h2 + .forum_rezimy .forum_rezim {
     margin-top: -0.1em;
 }
 
-.html-editor.se-editor {
+{light-theme} .html-editor.se-editor {
     background-color: white;
 }
 
@@ -1206,9 +1239,6 @@ if bezHodnoceni {
 @media velke {
 
 .dulezite_volby + #rozvrh_tabulka {
-    td.mezera {
-        background: white;
-    }
     .predmet_nazev {
         margin: 0;
     }
@@ -1218,23 +1248,27 @@ if bezHodnoceni {
 if retroRozvrh {
     barva_seminar = #e6f4fd
 
-    #app_content .legenda > div.seminar::before {
+    {light-theme} #app_content .legenda > div.seminar::before {
         background-color: barva_seminar;
     }
 
     .dulezite_volby + #rozvrh_tabulka {
-        td.seminar{
+        {light-theme} td.seminar {
             background-color: barva_seminar;
         }
 
         tbody th {
-            background-color: white;
-            color: black;
+            {iflight} {
+                background-color: white;
+                color: black;
+
+                &.prave_probiha {
+                    background-color: #fccd06;
+                }
+            }
+
             font-size: 120%;
 
-            &.prave_probiha {
-                background-color: #fccd06;
-            }
         }
 
         tbody tr,
@@ -1242,21 +1276,24 @@ if retroRozvrh {
         tbody td,
         .den-horni-radek:not(:first-child) td,
         {
-            border-color: gray !important;
+            {iflight} { border-color: gray !important; }
         }
 
         tbody tr td {
-            border-right: 1px solid;
-            border-left: 1px solid;
+            {iflight} {
+                border-right: 1px solid;
+                border-left: 1px solid;
+            }
         }
 
         td.mezera {
             border-right: none !important;
             border-left: none !important;
+            {iflight} { background: white; }
         }
 
         tbody th {
-            border: 2px solid gray !important;
+            {iflight} { border: 2px solid gray !important; }
         }
         .den-horni-radek:not(:first-child) td,
         tr:first-child td {
@@ -1281,7 +1318,7 @@ if retroRozvrh {
             white-space: unset;
         }
         tbody td > span.predmet_kod > a {
-            color: tmavemodra;
+            {iflight} { color: tmavemodra; }
             font-weight: 500;
         }
         tbody td > span.predmet_nazev {
@@ -1396,7 +1433,7 @@ table.inverzne > tbody > tr:first-child > td:first-child img {
 
 /*** Interactive Outlines ***/
 
-.io-element.io-kapitola-box {
+{light-theme} .io-element.io-kapitola-box {
     background-color: white;
 }
 
@@ -1430,13 +1467,13 @@ table.inverzne > tbody > tr:first-child > td:first-child img {
 
 /*** New Questionaries ***/
 #odpo_aplikace {
-    background-color: white;
+    background-color: var(--bg);
     padding-top: 0.5em;
     margin-bottom: 0;
 }
 
 #odpo_paticka {
-    background-color: white;
+    background-color: var(--bg);
 }
 
 /*** Peer assessment ***/
@@ -1448,14 +1485,14 @@ div.pa_projekt_novy a {
 
 .pa_tvorba_formulare_radek .radek_content,
 div.pa_projekt_rozsireni {
-    background-color: white;
+    background-color: var(--bg);
 }
 
 
 /*** Polls ***/
 
 div.pruzkum-banner {
-    background-color:white;
+    background-color:var(--bg);
 }
 
 }
